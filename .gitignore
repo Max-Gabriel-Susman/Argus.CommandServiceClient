@@ -1,0 +1,66 @@
+ld artefacts
+###############################
+bin/
+obj/
+
+###############################
+# User-specific IDE files
+###############################
+*.user          #  *.csproj.user, .suo, etc.
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider / VS Code / VS for Mac extras (delete if you don’t use them)
+.idea/
+.vscode/
+.vs/
+
+###############################
+# NuGet package metadata
+###############################
+# Safe to ignore – `dotnet restore` recreates them
+project.assets.json
+project.nuget.cache
+*.nuget.props
+*.nuget.targets
+
+###############################
+# Auto-generated code & caches
+###############################
+*.g.cs
+*.g.i.cs
+*.designer.cs
+*.GeneratedMSBuildEditorConfig.editorconfig
+*_i.cache
+*.assets.cache
+*.AssemblyInfoInputs.cache
+
+###############################
+# Logs & diagnostic traces
+###############################
+*.log
+*.tlog
+*.tmp
+
+###############################
+# OS cruft
+###############################
+.DS_Store
+Thumbs.db
+
+###############################
+# Editor swap / backup files
+###############################
+
+# Vim swap files  (.swp, .swo, .swx, etc.)
+*.sw?
+.*.sw?
+
+# Vim undo-history files  (.un~, .un0, …)
+*.un?
+.*.un?
+
+# Generic editor backups  (filename~)
+*~
+.*~
