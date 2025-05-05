@@ -2,15 +2,15 @@ name: Build & Publish WPF App
 
 on:
   push:
-    branches: [ "**" ]          # run on every branch push
+    branches: [ "**" ]   
   pull_request:
-    branches: [ "**" ]          # run on PRs too
+    branches: [ "**" ]     
 
 jobs:
   build:
-    runs-on: windows-latest     # Windows runner is required for WPF builds
+    runs-on: windows-latest    
 
-    env:                        # keep file names in one place
+    env:                       
       SOLUTION_FILE: Argus.InventoryExplorer.sln
       PROJECT_FILE: Argus.InventoryExplorer/Argus.InventoryExplorer.csproj
       CONFIG: Release
@@ -22,17 +22,13 @@ jobs:
     - name: 🛠️ Setup .NET SDK 8
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 8.0.x     # grabs the latest 8.x patch
+        dotnet-version: 8.0.x  
 
     - name: 🔄 Restore dependencies
       run: dotnet restore $env:SOLUTION_FILE
 
     - name: 🏗️ Build solution
       run: dotnet build $env:SOLUTION_FILE --configuration $env:CONFIG --no-restore
-
-    # (Optional) – add tests here if/when you create a test project
-    # - name: ✅ Run unit tests
-    #   run: dotnet test $env:SOLUTION_FILE --configuration $env:CONFIG --no-build --verbosity normal
 
     - name: 📦 Publish app (framework-dependent)
       run: |
