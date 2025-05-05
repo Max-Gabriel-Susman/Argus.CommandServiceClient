@@ -23,7 +23,6 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x     # grabs the latest 8.x patch
-        cache: true               # built-in NuGet caching
 
     - name: 🔄 Restore dependencies
       run: dotnet restore $env:SOLUTION_FILE
