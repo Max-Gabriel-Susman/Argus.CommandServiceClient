@@ -1,0 +1,51 @@
+name: Build & Publish WPF App
+
+on:
+  push:
+    branches: [ "**" ]          # run on every branch push
+  pull_request:
+    branches: [ "**" ]          # run on PRs too
+
+jobs:
+  build:
+    runs-on: windows-latest     # Windows runner is required for WPF builds
+
+    env:                        # keep file names in one place
+      SOLUTION_FILE: Argus.InventoryExplorer.sln
+      PROJECT_FILE: Argus.InventoryExplorer/Argus.InventoryExplorer.csproj
+      CONFIG: Release
+
+    steps:
+    - name: ⬇️ Checkout source
+      uses: actions/checkout@v4
+
+    - name: 🛠️ Setup .NET SDK 8
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x     # grabs the latest 8.x patch
+        cache: true               # built-in NuGet caching
+
+    - name: 🔄 Restore dependencies
+      run: dotnet restore $env:SOLUTION_FILE
+
+    - name: 🏗️ Build solution
+      run: dotnet build $env:SOLUTION_FILE --configuration $env:CONFIG --no-restore
+
+    # (Optional) – add tests here if/when you create a test project
+    # - name: ✅ Run unit tests
+    #   run: dotnet test $env:SOLUTION_FILE --configuration $env:CONFIG --no-build --verbosity normal
+
+    - name: 📦 Publish app (framework-dependent)
+      run: |
+        dotnet publish $env:PROJECT_FILE `
+          --configuration $env:CONFIG `
+          --output publish `
+          /p:PublishSingleFile=true `
+          /p:PublishTrimmed=false `
+          /p:GenerateDocumentationFile=false
+
+    - name: 📤 Upload published artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: Argus.InventoryExplorer
+        path: publish/**
