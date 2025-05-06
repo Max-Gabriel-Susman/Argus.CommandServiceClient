@@ -5,8 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Argus.InventoryExplorer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Inventory Explorer" Height="450" Width="800">
 
+    <!-- One‑cell Grid so the ListView stretches with the window -->
+    <Grid>
+        <ListView x:Name="InventoryListView"
+                  Margin="10"
+                  ItemsSource="{Binding InventoryItems}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID"
+                                    Width="80"
+                                    DisplayMemberBinding="{Binding Id}" />
+                    <GridViewColumn Header="Name"
+                                    Width="240"
+                                    DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Quantity"
+                                    Width="100"
+                                    DisplayMemberBinding="{Binding Quantity}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>
