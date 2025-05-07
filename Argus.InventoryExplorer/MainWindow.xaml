@@ -4,25 +4,44 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Argus.InventoryExplorer"
+        xmlns:vm="clr-namespace:Argus.InventoryExplorer.ViewModels"
         mc:Ignorable="d"
         Title="Inventory Explorer" Height="450" Width="800">
 
-    <!-- One‑cell Grid so the ListView stretches with the window -->
+    <Window.DataContext>
+        <vm:InventoryExplorerViewModel />
+    </Window.DataContext>
+
     <Grid>
-        <ListView x:Name="InventoryListView"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <Button Content="Refresh"
+                    Command="{Binding RefreshCommand}"
+                    Margin="0,0,10,0"/>
+
+            <Button Content="Add"
+                    Command="{Binding AddItemCommand}"
+                    Margin="0,0,10,0"/>
+
+            <Button Content="Remove"
+                    Command="{Binding RemoveCommand}"
+                    Margin="0,0,10,0"/>
+        </StackPanel>
+
+        <ListView Grid.Row="1"
+                  x:Name="InventoryListView"
                   Margin="10"
-                  ItemsSource="{Binding InventoryItems}">
+                  ItemsSource="{Binding InventoryItems}"
+                  SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="ID"
-                                    Width="80"
-                                    DisplayMemberBinding="{Binding Id}" />
-                    <GridViewColumn Header="Name"
-                                    Width="240"
-                                    DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Quantity"
-                                    Width="100"
-                                    DisplayMemberBinding="{Binding Quantity}" />
+                    <GridViewColumn Header="ID"       Width="80"  DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn Header="Name"     Width="240" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Quantity" Width="100" DisplayMemberBinding="{Binding Quantity}"/>
                 </GridView>
             </ListView.View>
         </ListView>
