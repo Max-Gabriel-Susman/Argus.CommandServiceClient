@@ -31,10 +31,14 @@ namespace Argus.InventoryExplorer.ViewModels
         public InventoryExplorerViewModel()
         {
             RefreshCommand = new RelayCommand(_ => LoadData());
-            AddItemCommand = new RelayCommand(_ => AddNewItem());
+
+            AddItemCommand = new RelayCommand(
+                _ => AddNewItem(),
+                _ => !string.IsNullOrWhiteSpace(NewItemName) && NewItemQuantity >= 0);
+
             RemoveCommand = new RelayCommand(
-                                 _ => RemoveSelected(),
-                                 _ => SelectedItem != null);
+                _ => RemoveSelected(),
+                _ => SelectedItem != null);
 
             LoadData();
         }
@@ -47,15 +51,41 @@ namespace Argus.InventoryExplorer.ViewModels
             InventoryItems.Add(new InventoryItem { Id = 3, Name = "Doohickey", Quantity = 5 });
         }
 
+        private string _newItemName = string.Empty;
+        public string NewItemName
+        {
+            get => _newItemName;
+            set
+            {
+                _newItemName = value; OnPropertyChanged();
+                ((RelayCommand)AddItemCommand).RaiseCanExecuteChanged();
+            }
+        }
+
+        private int _newItemQuantity;
+        public int NewItemQuantity
+        {
+            get => _newItemQuantity;
+            set
+            {
+                _newItemQuantity = value; OnPropertyChanged();
+                ((RelayCommand)AddItemCommand).RaiseCanExecuteChanged();
+            }
+        }
+
         void AddNewItem()
         {
-            var id = InventoryItems.Count + 1;
+            int nextId = InventoryItems.Any() ? InventoryItems.Max(i => i.Id) + 1 : 1;
+
             InventoryItems.Add(new InventoryItem
             {
-                Id = id,
-                Name = $"New Item {id}",
-                Quantity = 0
+                Id = nextId,
+                Name = NewItemName.Trim(),
+                Quantity = NewItemQuantity
             });
+
+            NewItemName = string.Empty;
+            NewItemQuantity = 0;
         }
 
         void RemoveSelected()

@@ -7,43 +7,59 @@
         xmlns:vm="clr-namespace:Argus.InventoryExplorer.ViewModels"
         mc:Ignorable="d"
         Title="Inventory Explorer" Height="450" Width="800">
-
+    
     <Window.DataContext>
         <vm:InventoryExplorerViewModel />
     </Window.DataContext>
-
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-
+        
         <StackPanel Orientation="Horizontal" Margin="10">
             <Button Content="Refresh"
                     Command="{Binding RefreshCommand}"
                     Margin="0,0,10,0"/>
 
-            <Button Content="Add"
-                    Command="{Binding AddItemCommand}"
-                    Margin="0,0,10,0"/>
-
-            <Button Content="Remove"
+            <Button Content="Delete Selected"
                     Command="{Binding RemoveCommand}"
                     Margin="0,0,10,0"/>
         </StackPanel>
-
+        
         <ListView Grid.Row="1"
-                  x:Name="InventoryListView"
-                  Margin="10"
                   ItemsSource="{Binding InventoryItems}"
-                  SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                  SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                  Margin="10">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="ID"       Width="80"  DisplayMemberBinding="{Binding Id}"/>
-                    <GridViewColumn Header="Name"     Width="240" DisplayMemberBinding="{Binding Name}"/>
-                    <GridViewColumn Header="Quantity" Width="100" DisplayMemberBinding="{Binding Quantity}"/>
+                    <GridViewColumn Header="ID"       Width="80"  DisplayMemberBinding="{Binding Id}" />
+                    <GridViewColumn Header="Name"     Width="240" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Quantity" Width="100" DisplayMemberBinding="{Binding Quantity}" />
                 </GridView>
             </ListView.View>
         </ListView>
+        
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    Margin="10"
+                    VerticalAlignment="Center">
+
+            <TextBlock Text="Name:" VerticalAlignment="Center"/>
+            <TextBox Width="200"
+                     Margin="5,0"
+                     Text="{Binding NewItemName, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <TextBlock Text="Qty:" VerticalAlignment="Center"/>
+            <TextBox Width="60"
+                     Margin="5,0"
+                     Text="{Binding NewItemQuantity, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Button Content="Add"
+                    Command="{Binding AddItemCommand}"
+                    Margin="10,0,0,0"/>
+        </StackPanel>
     </Grid>
 </Window>
