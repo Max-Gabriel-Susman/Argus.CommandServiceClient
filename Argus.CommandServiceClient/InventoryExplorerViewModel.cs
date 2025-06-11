@@ -7,10 +7,10 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Argus.InventoryExplorer.Infrastructure;
-using Argus.InventoryExplorer.Models;
+using Argus.CommandServiceClient.Infrastructure;
+using Argus.CommandServiceClient.Models;
 
-namespace Argus.InventoryExplorer.ViewModels
+namespace Argus.CommandServiceClient.ViewModels
 {
     public sealed class InventoryExplorerViewModel : INotifyPropertyChanged
     {

@@ -1,7 +1,7 @@
-﻿<Application x:Class="Argus.InventoryExplorer.App"
+﻿<Application x:Class="Argus.CommandServiceClient.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Argus.InventoryExplorer"
+             xmlns:local="clr-namespace:Argus.CommandServiceClient"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

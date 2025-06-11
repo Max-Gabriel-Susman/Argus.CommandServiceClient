@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Argus.InventoryExplorer
+namespace Argus.CommandServiceClient
 {
     public partial class MainWindow : Window
     {

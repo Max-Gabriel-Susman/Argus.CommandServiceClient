@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Argus.InventoryExplorer.Infrastructure
+namespace Argus.CommandServiceClient.Infrastructure
 {
     public sealed class RelayCommand : ICommand
     {

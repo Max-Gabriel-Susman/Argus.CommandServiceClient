@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Argus.InventoryExplorer.Models
+namespace Argus.CommandServiceClient.Models
 {
     public class InventoryItem
     {

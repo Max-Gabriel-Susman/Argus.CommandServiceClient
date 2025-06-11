@@ -11,8 +11,8 @@ jobs:
     runs-on: windows-latest    
 
     env:                       
-      SOLUTION_FILE: Argus.InventoryExplorer.sln
-      PROJECT_FILE: Argus.InventoryExplorer/Argus.InventoryExplorer.csproj
+      SOLUTION_FILE: Argus.CommandServiceClient.sln
+      PROJECT_FILE: Argus.CommandServiceClient/Argus.CommandServiceClient.csproj
       CONFIG: Release
 
     steps:
@@ -42,5 +42,5 @@ jobs:
     - name: 📤 Upload published artifact
       uses: actions/upload-artifact@v4
       with:
-        name: Argus.InventoryExplorer
+        name: Argus.CommandServiceClient
         path: publish/**

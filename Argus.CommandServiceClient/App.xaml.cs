@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace Argus.InventoryExplorer
+namespace Argus.CommandServiceClient
 {
     /// <summary>
     /// Interaction logic for App.xaml
